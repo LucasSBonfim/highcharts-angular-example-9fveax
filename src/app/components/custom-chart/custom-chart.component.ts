@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartComponent } from '../../shared/components';
 
-import { Options, DataPoint, ChartObject, SeriesObject } from 'highcharts';
+import { Options} from 'highcharts';
 
 import { tap, first } from 'rxjs/operators';
 

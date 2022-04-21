@@ -1,19 +1,9 @@
-import {
-  Optional,
-  ViewChild,
-  Output,
-  OnInit,
-  Component,
-  ChangeDetectionStrategy,
-  EventEmitter,
-  ChangeDetectorRef
-} from "@angular/core";
-
+import { Component, OnInit, ChangeDetectionStrategy, EventEmitter, Output, ViewChild, ChangeDetectorRef, Optional } from "@angular/core";
 import { Observable, BehaviorSubject, Subject } from "rxjs";
 import { filter, first, tap } from "rxjs/operators";
 
-import * as Highcharts from "highcharts";
-import * as _ from "lodash";
+import Highcharts from "highcharts";
+import _ from "lodash";
 
 export const dateTimeLabelFormats = {
   millisecond: "%a, %e %b, %H:%M:%S.%L",
@@ -49,25 +39,13 @@ export class ChartComponent implements OnInit {
   private updateFlagSubject = new BehaviorSubject<boolean>(false);
   updateFlag$ = this.updateFlagSubject.asObservable().pipe(filter(u => !!u));
 
-  private chartObjectSubject: Subject<
-    Highcharts.ChartObject | undefined
-  > = new BehaviorSubject(undefined);
+  private chartObjectSubject: Subject< Highcharts.ChartObject | undefined > = new BehaviorSubject(undefined);
   // tslint:disable-next-line:member-ordering
-  chartObject$: Observable<
-    Highcharts.ChartObject
-  > = this.chartObjectSubject.asObservable().pipe(
-    filter(c => !!c),
-    tap(t => console.log(t))
-  );
+  chartObject$: Observable< Highcharts.ChartObject > = this.chartObjectSubject.asObservable().pipe( filter(c => !!c), tap(t => console.log(t)));
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    // this.chartOptions = {
-    //   series: [{
-    //     data: [1, 2, 3]
-    //   }]
-    // }
     console.log("ngOnInit - parent");
     this.initChart();
   }
